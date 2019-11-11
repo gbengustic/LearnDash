@@ -130,9 +130,46 @@ namespace LearnDash
             {
                 txtBox.Text = string.Empty;
             }
+            IUDTotalAnswers.Value = 1;
+            cmbxAnswerNumber.Items.Clear();
+            for (int i = 1; i <= IUDTotalAnswers.Value; i++)
+            {
+                cmbxAnswerNumber.Items.Add(i.ToString());
+            }
+            cmbxAnswerNumber.SelectedIndex = 0;
+            LblPoint.Content = "Point " + cmbxAnswerNumber.Text;
             txtQuizTitle.Focus();
         }
 
-        
+        private void BtnLessonVideoSetup_Click(object sender, RoutedEventArgs e)
+        {
+            VideoSetup videoSetup = new VideoSetup("Lesson");
+            this.Hide();
+            videoSetup.ShowDialog();
+            this.Show();
+        }
+
+        private void BtnTopicVideoSetup_Click(object sender, RoutedEventArgs e)
+        {
+            VideoSetup videoSetup = new VideoSetup("Topic");
+            this.Hide();
+            videoSetup.ShowDialog();
+            this.Show();
+        }
+
+        private void IUDTotalAnswers_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void TextBox_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void TextBox_PreviewTextInput_2(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
     }
 }

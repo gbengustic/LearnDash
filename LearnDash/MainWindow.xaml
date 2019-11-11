@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:LearnDash"
         xmlns:talex="http://schemas.talex-soft.com/2010/xaml/presentation"
         mc:Ignorable="d"
-        Title="LearnDash" Height="650" Width="650" WindowStartupLocation="CenterScreen">
+        Title="LearnDash" Height="650" Width="650" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TabControl x:Name="LearnDashTab" >
             <TabItem Header="Add Question">
@@ -15,7 +15,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <xctk:IntegerUpDown x:Name="IUDTotalAnswers" FormatString="N0" Value="1" Increment="1" Maximum="13" Minimum="1" Margin="518,108,0,0" MouseLeave="IntegerUpDown_MouseLeave" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="59" TabIndex="7" />
+                    <xctk:IntegerUpDown x:Name="IUDTotalAnswers" FormatString="N0" Value="1" Increment="1" Maximum="13" Minimum="1" Margin="518,108,0,0" MouseLeave="IntegerUpDown_MouseLeave" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="59" TabIndex="7" PreviewTextInput="IUDTotalAnswers_PreviewTextInput" />
                     <Label Content="Quiz Title" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="194"/>
                     <TextBox x:Name="txtQuizTitle" HorizontalAlignment="Left" Height="23" Margin="10,44,0,0" TextWrapping="Wrap" TabIndex="0" Text="" VerticalAlignment="Top" Width="194" VerticalContentAlignment="Center"/>
                     <Label Content="Title" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top" Width="194"/>
@@ -101,7 +101,7 @@
                     <Label Content="Lesson Featured Image" HorizontalAlignment="Left" Margin="403,244,0,0" VerticalAlignment="Top" Width="208"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="403,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="10"/>
                     <TextBlock Text="Lesson Order" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="496,317,0,0" VerticalAlignment="Top" Width="70" Height="20"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="574,314,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" VerticalContentAlignment="Center" TabIndex="12"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="574,314,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" VerticalContentAlignment="Center" TabIndex="12" PreviewTextInput="TextBox_PreviewTextInput_1"/>
                     <Label Content="Topic Title" HorizontalAlignment="Left" Margin="10,368,0,0" VerticalAlignment="Top" Width="208"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="10,399,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="14"/>
                     <Label Content="Topic Category" HorizontalAlignment="Left" Margin="235,368,0,0" VerticalAlignment="Top" Width="146"/>
@@ -112,15 +112,15 @@
                     <TextBox HorizontalAlignment="Left" Height="89" Margin="10,455,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="371" TabIndex="17"/>
                     <Label Content="Topic Featured Image" HorizontalAlignment="Left" Margin="403,424,0,0" VerticalAlignment="Top" Width="208"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="403,455,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="16"/>
-                    <Button Content="Lesson Video Setup" HorizontalAlignment="Left" Margin="496,342,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.387,2.8" TabIndex="13"/>
+                    <Button x:Name="BtnLessonVideoSetup" Content="Lesson Video Setup" HorizontalAlignment="Left" Margin="496,342,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.387,2.8" TabIndex="13" Click="BtnLessonVideoSetup_Click"/>
                     <TextBlock Text="Topic Status (Publish/Draft)" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="403,488,0,0" VerticalAlignment="Top" Width="88" Height="31"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="403,524,0,0" TabIndex="17" >
                         <ComboBoxItem Content="Publish"/>
                         <ComboBoxItem Content="Draft"/>
                     </ComboBox>
                     <TextBlock Text="Topic Order" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="496,499,0,0" VerticalAlignment="Top" Width="70" Height="20"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="574,496,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" VerticalContentAlignment="Center" TabIndex="18"/>
-                    <Button Content="Topic Video Setup" HorizontalAlignment="Left" Margin="496,524,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.387,2.8" TabIndex="19"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="574,496,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" VerticalContentAlignment="Center" TabIndex="18" PreviewTextInput="TextBox_PreviewTextInput_2"/>
+                    <Button x:Name="BtnTopicVideoSetup" Content="Topic Video Setup" HorizontalAlignment="Left" Margin="496,524,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.387,2.8" TabIndex="19" Click="BtnTopicVideoSetup_Click"/>
                     <Button x:Name="BtnSubmit_Copy" Content="Submit" HorizontalAlignment="Left" Margin="266,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnSubmit_Click" TabIndex="20"/>
                     <Button x:Name="BtnReset_Copy" Content="Reset" HorizontalAlignment="Left" Margin="12,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnReset_Click" TabIndex="21"/>
                 </Grid>
