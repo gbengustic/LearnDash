@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LearnDashData" targetNamespace="http://tempuri.org/LearnDashData.xsd" xmlns:mstns="http://tempuri.org/LearnDashData.xsd" xmlns="http://tempuri.org/LearnDashData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="LearnDashData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="LearnDashData" msprop:Generator_UserDSName="LearnDashData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Questions" msprop:Generator_TableClassName="QuestionsDataTable" msprop:Generator_TableVarName="tableQuestions" msprop:Generator_TablePropName="Questions" msprop:Generator_RowDeletingName="QuestionsRowDeleting" msprop:Generator_RowChangingName="QuestionsRowChanging" msprop:Generator_RowEvHandlerName="QuestionsRowChangeEventHandler" msprop:Generator_RowDeletedName="QuestionsRowDeleted" msprop:Generator_UserTableName="Questions" msprop:Generator_RowChangedName="QuestionsRowChanged" msprop:Generator_RowEvArgName="QuestionsRowChangeEvent" msprop:Generator_RowClassName="QuestionsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DateEntered" msdata:DateTimeMode="Local" msprop:Generator_ColumnVarNameInTable="columnDateEntered" msprop:Generator_ColumnPropNameInRow="DateEntered" msprop:Generator_ColumnPropNameInTable="DateEnteredColumn" msprop:Generator_UserColumnName="DateEntered" type="xs:dateTime" />
+              <xs:element name="Quiz_Title" msprop:Generator_ColumnVarNameInTable="columnQuiz_Title" msprop:Generator_ColumnPropNameInRow="Quiz_Title" msprop:Generator_ColumnPropNameInTable="Quiz_TitleColumn" msprop:Generator_UserColumnName="Quiz_Title" type="xs:string" />
+              <xs:element name="Question_Type" msprop:Generator_ColumnVarNameInTable="columnQuestion_Type" msprop:Generator_ColumnPropNameInRow="Question_Type" msprop:Generator_ColumnPropNameInTable="Question_TypeColumn" msprop:Generator_UserColumnName="Question_Type" type="xs:string" minOccurs="0" />
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title" type="xs:string" minOccurs="0" />
+              <xs:element name="Total_Point" msprop:Generator_ColumnVarNameInTable="columnTotal_Point" msprop:Generator_ColumnPropNameInRow="Total_Point" msprop:Generator_ColumnPropNameInTable="Total_PointColumn" msprop:Generator_UserColumnName="Total_Point" type="xs:string" minOccurs="0" />
+              <xs:element name="Different_Points" msprop:Generator_ColumnVarNameInTable="columnDifferent_Points" msprop:Generator_ColumnPropNameInRow="Different_Points" msprop:Generator_ColumnPropNameInTable="Different_PointsColumn" msprop:Generator_UserColumnName="Different_Points" type="xs:string" minOccurs="0" />
+              <xs:element name="Question_Text" msprop:Generator_ColumnVarNameInTable="columnQuestion_Text" msprop:Generator_ColumnPropNameInRow="Question_Text" msprop:Generator_ColumnPropNameInTable="Question_TextColumn" msprop:Generator_UserColumnName="Question_Text" type="xs:string" minOccurs="0" />
+              <xs:element name="Question_ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnQuestion_ID" msprop:Generator_ColumnPropNameInRow="Question_ID" msprop:Generator_ColumnPropNameInTable="Question_IDColumn" msprop:Generator_UserColumnName="Question_ID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AnswersAndPoints" msprop:Generator_TableClassName="AnswersAndPointsDataTable" msprop:Generator_TableVarName="tableAnswersAndPoints" msprop:Generator_TablePropName="AnswersAndPoints" msprop:Generator_RowDeletingName="AnswersAndPointsRowDeleting" msprop:Generator_RowChangingName="AnswersAndPointsRowChanging" msprop:Generator_RowEvHandlerName="AnswersAndPointsRowChangeEventHandler" msprop:Generator_RowDeletedName="AnswersAndPointsRowDeleted" msprop:Generator_UserTableName="AnswersAndPoints" msprop:Generator_RowChangedName="AnswersAndPointsRowChanged" msprop:Generator_RowEvArgName="AnswersAndPointsRowChangeEvent" msprop:Generator_RowClassName="AnswersAndPointsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="Answer" msprop:Generator_ColumnVarNameInTable="columnAnswer" msprop:Generator_ColumnPropNameInRow="Answer" msprop:Generator_ColumnPropNameInTable="AnswerColumn" msprop:Generator_UserColumnName="Answer" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="Point" msprop:Generator_ColumnVarNameInTable="columnPoint" msprop:Generator_ColumnPropNameInRow="Point" msprop:Generator_ColumnPropNameInTable="PointColumn" msprop:Generator_UserColumnName="Point" type="xs:int" default="0" />
+              <xs:element name="Answer_Number" msprop:Generator_ColumnVarNameInTable="columnAnswer_Number" msprop:Generator_ColumnPropNameInRow="Answer_Number" msprop:Generator_ColumnPropNameInTable="Answer_NumberColumn" msprop:Generator_UserColumnName="Answer_Number" type="xs:int" minOccurs="0" />
+              <xs:element name="Question_ID" msprop:Generator_ColumnVarNameInTable="columnQuestion_ID" msprop:Generator_ColumnPropNameInRow="Question_ID" msprop:Generator_ColumnPropNameInTable="Question_IDColumn" msprop:Generator_UserColumnName="Question_ID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:Questions" />
+      <xs:field xpath="mstns:Question_ID" />
+    </xs:unique>
+    <xs:unique name="AnswersAndPoints_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:AnswersAndPoints" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="Constraint2">
+      <xs:selector xpath=".//mstns:AnswersAndPoints" />
+      <xs:field xpath="mstns:Question_ID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Questions_AnswersAndPoints" msdata:parent="Questions" msdata:child="AnswersAndPoints" msdata:parentkey="Question_ID" msdata:childkey="Question_ID" msprop:Generator_UserChildTable="AnswersAndPoints" msprop:Generator_ChildPropName="GetAnswersAndPointsRows" msprop:Generator_UserRelationName="Questions_AnswersAndPoints" msprop:Generator_ParentPropName="QuestionsRow" msprop:Generator_RelationVarName="relationQuestions_AnswersAndPoints" msprop:Generator_UserParentTable="Questions" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

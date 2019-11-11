@@ -29,7 +29,7 @@ namespace LearnDash
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if (Validate(this.VideoSetupGrid))
+            if (MainWindow.Validate(this.VideoSetupGrid))
             {
 
 
@@ -42,40 +42,6 @@ namespace LearnDash
             }
         }
 
-
-
-        private bool Validate(Grid obj)
-        {
-            var trueforall = true;
-            var atleastone = false;
-            IEnumerable<TextBox> collection = obj.Children.OfType<TextBox>();
-            foreach (var txtBox in collection)
-            {
-                if (string.IsNullOrWhiteSpace(txtBox.Text))
-                {
-                    atleastone = false;
-                    break;
-                }
-                else
-                {
-                    atleastone = true;
-                }
-            }
-            IEnumerable<ComboBox> collection1 = obj.Children.OfType<ComboBox>();
-            foreach (var txtBox in collection1)
-            {
-                if (string.IsNullOrWhiteSpace(txtBox.Text))
-                {
-                    atleastone = false;
-                    break;
-                }
-                else
-                {
-                    atleastone = true;
-                }
-            }
-            return trueforall && atleastone;
-        }
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {

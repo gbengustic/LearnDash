@@ -33,7 +33,7 @@
                     <Label Content="Answer Type" HorizontalAlignment="Left" Margin="422,84,0,0" VerticalAlignment="Top" Width="80"/>
                     <TextBox x:Name="txtAnswerType" HorizontalAlignment="Left" Height="23" Margin="422,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80" VerticalContentAlignment="Center" TabIndex="6"/>
                     <Label x:Name="LblPoint" Content="Point 1" HorizontalAlignment="Left" Margin="120,277,0,0" VerticalAlignment="Top" Width="50"/>
-                    <TextBox x:Name="txtPoints"  HorizontalAlignment="Left" Height="23" Margin="175,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="28" VerticalContentAlignment="Center" PreviewTextInput="TextBox_PreviewTextInput" TabIndex="11"/>
+                    <TextBox x:Name="txtPoints"  HorizontalAlignment="Left" Height="23" Margin="175,280,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="28" PreviewTextInput="TextBox_PreviewTextInput" TabIndex="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                     <ComboBox x:Name="cmbxQuestionType" HorizontalAlignment="Left" Margin="241,44,0,0" TabIndex="1" VerticalAlignment="Top" Width="155">
                         <ComboBoxItem Content="single"/>
                         <ComboBoxItem Content="sort_answer"/>
@@ -45,7 +45,7 @@
                         <ComboBoxItem Content="essay"/>
 
                     </ComboBox>
-                    <ComboBox HorizontalAlignment="Left" Margin="337,116,0,0" VerticalAlignment="Top" Width="50" TabIndex="5">
+                    <ComboBox x:Name="cmbxDifferentPoints" HorizontalAlignment="Left" Margin="337,116,0,0" VerticalAlignment="Top" Width="50" TabIndex="5">
                         <ComboBoxItem Content="yes"/>
                         <ComboBoxItem Content="no"/>
                     </ComboBox>
@@ -54,13 +54,14 @@
                     <TextBox x:Name="txtMsgCorrectAnswer" HorizontalAlignment="Left" Height="90" Margin="10,439,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" TabIndex="14" />
                     <Label Content="Message with incorrect answer" HorizontalAlignment="Left" Margin="337,408,0,0" VerticalAlignment="Top" Width="194"/>
                     <TextBox x:Name="txtMsgIncorrectAnswer" HorizontalAlignment="Left" Height="90" Margin="337,439,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" TabIndex="15" />
-                    <Button x:Name="BtnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="266,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnSubmit_Click" TabIndex="16"/>
+                    <Button x:Name="BtnSubmitQuestion" Content="Submit" HorizontalAlignment="Left" Margin="266,550,0,0" VerticalAlignment="Top" Width="115" Height="32"  TabIndex="16" Click="BtnSubmitQuestion_Click"/>
                     <Button x:Name="BtnReset" Content="Reset" HorizontalAlignment="Left" Margin="12,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnReset_Click" TabIndex="17"/>
                     <Label Content="Hint" HorizontalAlignment="Left" Margin="337,277,0,0" VerticalAlignment="Top" Width="194"/>
                     <TextBox x:Name="txtHint" HorizontalAlignment="Left" Height="90" Margin="337,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" TabIndex="12" />
                     <Label Content="Answer" HorizontalAlignment="Left" Margin="337,147,0,0" VerticalAlignment="Top" Width="194"/>
                     <TextBox x:Name="txtAnswer"  AcceptsReturn="True" HorizontalAlignment="Left" Height="90" Margin="337,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" TabIndex="9" />
                     <TextBlock HorizontalAlignment="Left" Margin="325,76,0,0" TextWrapping="Wrap" Text="Different points for each answer" VerticalAlignment="Top" Height="34" Width="84"/>
+                    <Button x:Name="btnAddAnswer" Content="Add" HorizontalAlignment="Left" Margin="224,280,0,0" VerticalAlignment="Top" Width="56" Click="BtnAddAnswer_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Add Course">
@@ -123,6 +124,18 @@
                     <Button x:Name="BtnTopicVideoSetup" Content="Topic Video Setup" HorizontalAlignment="Left" Margin="496,524,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.387,2.8" TabIndex="19" Click="BtnTopicVideoSetup_Click"/>
                     <Button x:Name="BtnSubmit_Copy" Content="Submit" HorizontalAlignment="Left" Margin="266,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnSubmit_Click" TabIndex="20"/>
                     <Button x:Name="BtnReset_Copy" Content="Reset" HorizontalAlignment="Left" Margin="12,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnReset_Click" TabIndex="21"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Export">
+                <Grid x:Name="ExportGrid" Background="#FFE5E5E5" Loaded="ExportGrid_Loaded">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Excel Path" HorizontalAlignment="Left" Margin="118,191,0,0" VerticalAlignment="Top" Width="65"/>
+                    <TextBox x:Name="TxtExcelPath" HorizontalAlignment="Left" Height="23" Margin="188,191,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="282" VerticalContentAlignment="Center"/>
+                    <Button x:Name="btnBrowse" Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="475,191,0,0" Height="23" Click="BtnBrowse_Click"/>
+                    <Button x:Name="BtnExportQuestion" Content="Export Question" HorizontalAlignment="Left" Margin="188,239,0,0" VerticalAlignment="Top" Width="108" Height="32" Click="BtnExportQuestion_Click"/>
+                    <Button x:Name="BtnExportCourse" Content="Export Course" HorizontalAlignment="Left" Margin="362,239,0,0" VerticalAlignment="Top" Width="108" Height="32"/>
                 </Grid>
             </TabItem>
         </TabControl>

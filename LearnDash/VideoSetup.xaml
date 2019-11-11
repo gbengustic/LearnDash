@@ -12,7 +12,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Enable Video Progression (Y/N)" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Width="99"/>
         <Label x:Name="TxbVideoURL" Content="Video Lesson URL" HorizontalAlignment="Left" Margin="0,15,0,0" VerticalAlignment="Top" Width="208" />
-        <TextBox x:Name="TxtVideoURL" HorizontalAlignment="Left" Height="23" Margin="0,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="322" />
+        <TextBox x:Name="TxtVideoURL" HorizontalAlignment="Left" Height="23" Margin="0,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="322" VerticalContentAlignment="Center" />
         <TextBlock TextWrapping="Wrap" Text="Auto Start Video (Y/N)" HorizontalAlignment="Left" Margin="126,75,0,0" VerticalAlignment="Top" Width="68"/>
         <TextBlock TextWrapping="Wrap" Text="Show Video Control (Y/N)" HorizontalAlignment="Left" Margin="0,154,0,0" VerticalAlignment="Top" Width="82"/>
         <TextBlock TextWrapping="Wrap" Text="When to Show (After /Before)" HorizontalAlignment="Left" Margin="126,154,0,0" VerticalAlignment="Top" Width="82"/>
