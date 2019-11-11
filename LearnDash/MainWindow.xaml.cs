@@ -1,6 +1,4 @@
-﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Drawing.Charts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace LearnDash
 {
@@ -28,7 +27,7 @@ namespace LearnDash
         int InitialAnswerPoints =1;
         string[] Answers = new string[13];
         int[] AnswerPoint = new int[13];
-        System.Data.DataTable QuestionDt;
+        DataTable QuestionDt;
         public MainWindow()
         {
             InitializeComponent();
@@ -223,9 +222,9 @@ namespace LearnDash
 
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    String query = "INSERT INTO dbo.Question ([DateEntered],[Quiz_Title],[Question_Type],[Title],[Total_Point],[Different_Points]" +
+                    String query = "INSERT INTO dbo.Question ([DateEntered],[Quiz_Title],[Question_Type],[Category],[Title],[Total_Point],[Different_Points]" +
                         ",[Question_Text],[Answer_Type],[Answer],[Total_Answer],[Message_with_correct_answer],[Message_with_incorrect_answer],[Hint]) OUTPUT INSERTED.ID " +
-                        "VALUES (@DateEntered,@Quiz_Title,@Question_Type,@Title,@Total_Point,@Different_Points,@Question_Text,@Answer_Type,@Answer," +
+                        "VALUES (@DateEntered,@Quiz_Title,@Question_Type,@Category,@Title,@Total_Point,@Different_Points,@Question_Text,@Answer_Type,@Answer," +
                         "@Total_Answer,@Message_with_correct_answer,@Message_with_incorrect_answer,@Hint)";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -233,6 +232,7 @@ namespace LearnDash
                         command.Parameters.AddWithValue("@DateEntered",DateTime.Now);
                         command.Parameters.AddWithValue("@Quiz_Title", txtQuizTitle.Text);
                         command.Parameters.AddWithValue("@Question_Type",cmbxQuestionType.Text);
+                        command.Parameters.AddWithValue("@Category", txtCategory.Text);
                         command.Parameters.AddWithValue("@Title",txtTitle.Text);
                         command.Parameters.AddWithValue("@Total_Point", Convert.ToInt32(txtTotalPoints.Text));
                         command.Parameters.AddWithValue("@Different_Points",cmbxDifferentPoints.Text);
@@ -247,7 +247,7 @@ namespace LearnDash
                         connection.Open();
                         try
                         {
-                            int result = command.ExecuteNonQuery();
+                            //int result = command.ExecuteNonQuery();
                             LastID = (Int32)command.ExecuteScalar();
 
                         }
@@ -341,23 +341,97 @@ namespace LearnDash
 
         private void BtnExportQuestion_Click(object sender, RoutedEventArgs e)
         {
-            QuestionDt = new System.Data.DataTable();
+            var FinalQuestionTable = new DataTable();
+            
+            QuestionDt = new DataTable();
             SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
             var command = new SqlCommand("Select * FROM dbo.Question", connection);
             var adapter = new SqlDataAdapter(command);
             adapter.Fill(QuestionDt);
-            Export("Question", QuestionDt);
+            foreach (DataColumn s in QuestionDt.Columns)
+            { 
+               if (s.Ordinal>1 && s.Ordinal <= 9) FinalQuestionTable.Columns.Add(s.ColumnName);
+            }
+            for(int i=1; i<=13;i++)
+            {
+                FinalQuestionTable.Columns.Add("Answer_"+ i);
+                FinalQuestionTable.Columns.Add("Point_" + i);
+            }
+            foreach (DataColumn s in QuestionDt.Columns)
+            {
+                if (s.Ordinal > 9) FinalQuestionTable.Columns.Add(s.ColumnName);
+            }
+
+            foreach(DataRow dataRow in QuestionDt.Rows)
+            {
+                DataRow dr = FinalQuestionTable.NewRow();
+                dr["Quiz_Title"] = dataRow["Quiz_Title"];
+                dr["Question_Type"] = dataRow["Question_Type"];
+                dr["Category"] = dataRow["Category"];
+                dr["Title"] = dataRow["Title"];
+                dr["Total_Point"] = dataRow["Total_Point"];
+                dr["Different_Points"] = dataRow["Different_Points"];
+                dr["Question_Text"] = dataRow["Question_Text"];
+                dr["Answer_Type"] = dataRow["Answer_Type"];
+                dr["Answer"] = dataRow["Answer"];
+                dr["Total_Answer"] = dataRow["Total_Answer"];
+                dr["Message_with_correct_answer"] = dataRow["Message_with_correct_answer"];
+                dr["Message_with_incorrect_answer"] = dataRow["Message_with_incorrect_answer"];
+                dr["Hint"] = dataRow["Hint"];
+                var AnswerDt = new DataTable();
+                connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
+                command = new SqlCommand("Select * FROM dbo.Answer Where Question_ID='"+ dataRow["Id"].ToString() + "'", connection);
+                adapter = new SqlDataAdapter(command);
+                adapter.Fill(AnswerDt);
+                AnswerDt.DefaultView.Sort = "Answer_Number ASC";
+                if(AnswerDt.Rows.Count>0)
+                {
+                    int i = 0;
+                    foreach(DataRowView ans in AnswerDt.DefaultView)
+                    {
+                        dr[i + 8] = ans[2];
+                        dr[i + 9] = ans[3];
+                        i = i + 2;
+                    }
+                    
+                }
+                else
+                {
+                    for(int i=8; i<=33;i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            dr[i] = "";
+                        }
+                        else
+                        {
+                            dr[i] = 0;
+                        }
+                    }
+                }
+
+                FinalQuestionTable.Rows.Add(dr);
+            }
+            Export("Question", FinalQuestionTable);
         }
 
-        void Export(string Caller, System.Data.DataTable table)
+        void Export(string Caller, DataTable table)
         {
-            var wb = new XLWorkbook();
+
+            var wb = new ClosedXML.Excel.XLWorkbook();
             var ws = wb.Worksheets.Add("sheet1");
             ws.Cell(1, 1).InsertTable(table);
             ws.Columns().AdjustToContents();
             ws.Tables.FirstOrDefault().ShowAutoFilter = false;
-            wb.SaveAs(System.IO.Path.Combine(TxtExcelPath.Text,Caller + ".xlsx"));
-            MessageBox.Show((Caller  + " has been successully exported"), "LearnDash");
+            try
+            {
+                wb.SaveAs(System.IO.Path.Combine(TxtExcelPath.Text, Caller + ".xlsx"));
+                MessageBox.Show((Caller + " has been successully exported"), "LearnDash");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "LearnDash");
+            }
         }
 
         private void ExportGrid_Loaded(object sender, RoutedEventArgs e)
