@@ -25,8 +25,8 @@ namespace LearnDash.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\HP\\source\\repos\\Lear" +
-            "nDash\\LearnDash\\LearnDash.mdf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\LearnDash.md" +
+            "f\";Integrated Security=True")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

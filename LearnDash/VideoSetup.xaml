@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LearnDash"
         mc:Ignorable="d"
-        Title="LearnDash" Height="410" Width="365" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize">
+        Title="LearnDash" Height="410" Width="365" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize" Icon="main_logo_js_5Dy_icon.ico">
     <Grid x:Name="VideoSetupGrid" Margin="11,3,-11,-3" >
         <Grid.RowDefinitions>
             <RowDefinition/>

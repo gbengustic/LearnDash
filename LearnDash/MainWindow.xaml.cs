@@ -85,10 +85,12 @@ namespace LearnDash
                         if (AnswerPoint[Convert.ToInt32(cmbxAnswerNumber.Text) - 1] == 0)
                         {
                             txtPoints.Clear();
+                            btnAddAnswer.Content = "Add";
                         }
                         else
                         {
                             txtPoints.Text = AnswerPoint[Convert.ToInt32(cmbxAnswerNumber.Text) - 1].ToString();
+                            btnAddAnswer.Content = "Update";
                         }
                         txtAnswers.Text = Answers[Convert.ToInt32(cmbxAnswerNumber.Text) - 1];
                     }
@@ -109,10 +111,12 @@ namespace LearnDash
             if (AnswerPoint[Convert.ToInt32(cmbxAnswerNumber.Text) - 1] == 0)
             {
                 txtPoints.Clear();
+                btnAddAnswer.Content = "Add";
             }
             else
             {
                 txtPoints.Text = AnswerPoint[Convert.ToInt32(cmbxAnswerNumber.Text) - 1].ToString();
+                btnAddAnswer.Content = "Update";
             }
             txtAnswers.Text = Answers[Convert.ToInt32(cmbxAnswerNumber.Text) - 1];
 
@@ -273,6 +277,7 @@ namespace LearnDash
             cmbxAnswerNumber.SelectedIndex = 0;
             LblPoint.Content = "Point " + cmbxAnswerNumber.Text;
             txtQuizTitle.Focus();
+            btnAddAnswer.Content = "Add";
         }
 
         private void BtnLessonVideoSetup_Click(object sender, RoutedEventArgs e)
@@ -419,13 +424,20 @@ namespace LearnDash
                     if (AnswerPoint[Convert.ToInt32(cmbxAnswerNumber.Text) - 1] == 0)
                     {
                         txtPoints.Clear();
+                        btnAddAnswer.Content = "Add";
                     }
                     else
                     {
                         txtPoints.Text = AnswerPoint[Convert.ToInt32(cmbxAnswerNumber.Text) - 1].ToString();
+                        btnAddAnswer.Content = "Update";
                     }
                     txtAnswers.Text = Answers[Convert.ToInt32(cmbxAnswerNumber.Text) - 1];
                 }
+            }
+            else
+            {
+                MessageBox.Show("All answers and points have been added","LearnDash");
+                btnAddAnswer.Content = "Update";
             }
 
 

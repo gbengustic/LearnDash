@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:LearnDash"
         xmlns:talex="http://schemas.talex-soft.com/2010/xaml/presentation"
         mc:Ignorable="d"
-        Title="LearnDash" Height="650" Width="650" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="LearnDash" Height="650" Width="650" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="main_logo_js_5Dy_icon.ico">
     <Grid>
         <TabControl x:Name="LearnDashTab" >
             <TabItem Header="Add Question">

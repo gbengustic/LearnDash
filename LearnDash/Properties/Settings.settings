@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\HP\source\repos\LearnDash\LearnDash\LearnDash.mdf;Integrated Security=True</Value>
+      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="|DataDirectory|\LearnDash.mdf";Integrated Security=True</Value>
     </Setting>
     <Setting Name="ExcelPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
