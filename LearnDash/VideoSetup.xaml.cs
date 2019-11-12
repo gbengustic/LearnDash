@@ -19,19 +19,43 @@ namespace LearnDash
     /// </summary>
     public partial class VideoSetup : Window
     {
+        string Caller = "";
         public VideoSetup(string typeOfCaller)
         {
             InitializeComponent();
-
-            TxbAutoComp.Text = "Auto Complete "+ typeOfCaller +" (Y/N)";
-            TxbVideoURL.Content = "Video "+ typeOfCaller +" URL";
+            Caller = typeOfCaller;
+            TxbAutoComp.Text = "Auto Complete " + Caller + " (Y/N)";
+            TxbVideoURL.Content = "Video " + Caller + " URL";
         }
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
             if (MainWindow.Validate(this.VideoSetupGrid))
             {
-
+                if(Caller=="Lesson")
+                {
+                    CourseVideoSetup.Lesson_Allow_Comment = CmbxAllowComment.Text;
+                    CourseVideoSetup.Lesson_Auto_Complete = CmbxAutoComplete.Text;
+                    CourseVideoSetup.Lesson_Auto_Start_Video = CmbxAutoStartVideo.Text;
+                    CourseVideoSetup.Lesson_Enable_Video_Progression = CmbxEnableVideoProgression.Text;
+                    CourseVideoSetup.Lesson_Hide_Complete_Button = CmbxHideCompleteButton.Text;
+                    CourseVideoSetup.Lesson_Show_Video_Control = CmbxShowVideoControl.Text;
+                    CourseVideoSetup.Lesson_Video_URL = TxtVideoURL.Text;
+                    CourseVideoSetup.Lesson_When_to_Show = CmbxWhenToShow.Text;
+                    CourseVideoSetup.LessonComplete = true;
+                }
+                else if(Caller=="Topic")
+                {
+                    CourseVideoSetup.Topic_Allow_Comment = CmbxAllowComment.Text;
+                    CourseVideoSetup.Topic_Auto_Complete = CmbxAutoComplete.Text;
+                    CourseVideoSetup.Topic_Auto_Start_Video = CmbxAutoStartVideo.Text;
+                    CourseVideoSetup.Topic_Enable_Video_Progression = CmbxEnableVideoProgression.Text;
+                    CourseVideoSetup.Topic_Hide_Complete_Button = CmbxHideCompleteButton.Text;
+                    CourseVideoSetup.Topic_Show_Video_Control = CmbxShowVideoControl.Text;
+                    CourseVideoSetup.Topic_Video_URL = TxtVideoURL.Text;
+                    CourseVideoSetup.Topic_When_to_Show = CmbxWhenToShow.Text;
+                    CourseVideoSetup.TopicComplete = true;
+                }
 
                 MessageBox.Show("Setup saved.", "LearnDash");
                 this.Close();

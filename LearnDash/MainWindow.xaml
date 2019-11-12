@@ -15,7 +15,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <xctk:IntegerUpDown x:Name="IUDTotalAnswers" FormatString="N0" Value="1" Increment="1" Maximum="13" Minimum="1" Margin="518,108,0,0" MouseLeave="IntegerUpDown_MouseLeave" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="59" TabIndex="7" PreviewTextInput="IUDTotalAnswers_PreviewTextInput" />
+                    <xctk:IntegerUpDown x:Name="IUDTotalAnswers" FormatString="N0" Value="1" Increment="1" Maximum="8" Minimum="1" Margin="518,108,0,0" MouseLeave="IntegerUpDown_MouseLeave" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="59" TabIndex="7" PreviewTextInput="IUDTotalAnswers_PreviewTextInput" />
                     <Label Content="Quiz Title" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="194"/>
                     <TextBox x:Name="txtQuizTitle" HorizontalAlignment="Left" Height="23" Margin="10,44,0,0" TextWrapping="Wrap" TabIndex="0" Text="" VerticalAlignment="Top" Width="194" VerticalContentAlignment="Center"/>
                     <Label Content="Title" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top" Width="194"/>
@@ -65,68 +65,68 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Add Course">
-                <Grid Background="#FFE5E5E5">
+                <Grid x:Name="CourseTab"  Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
                     <Label Content="Course Title" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="0"/>
+                    <TextBox x:Name="TxtCourseTitle" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="0"/>
                     <Label Content="Course Category" HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Width="146"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="235,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" VerticalContentAlignment="Center" TabIndex="1"/>
+                    <TextBox x:Name="TxtCourseCategory" HorizontalAlignment="Left" Height="23" Margin="235,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" VerticalContentAlignment="Center" TabIndex="1"/>
                     <Label Content="Course Tag" HorizontalAlignment="Left" Margin="403,10,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="403,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="2"/>
+                    <TextBox x:Name="TxtCourseTag" HorizontalAlignment="Left" Height="23" Margin="403,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="2"/>
                     <Label Content="Course Content" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="89" Margin="10,97,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="371" TabIndex="3"/>
+                    <TextBox x:Name="TxtCourseContent" HorizontalAlignment="Left" Height="89" Margin="10,97,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="371" TabIndex="3"/>
                     <Label Content="Course Featured Image" HorizontalAlignment="Left" Margin="403,66,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="403,97,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="4"/>
+                    <TextBox x:Name="TxtCourseFeaturedImage" HorizontalAlignment="Left" Height="23" Margin="403,97,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="4"/>
                     <TextBlock Text="Course Status (Publish/Draft)" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="403,128,0,0" VerticalAlignment="Top" Width="88" Height="31"/>
 
-                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="403,164,0,0" TabIndex="5">
+                    <ComboBox x:Name="CmbxCourseStatus" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="403,164,0,0" TabIndex="5">
                         <ComboBoxItem Content="Publish"/>
                         <ComboBoxItem Content="Draft"/>
                     </ComboBox>
                     <Label Content="Lesson Title" HorizontalAlignment="Left" Margin="10,188,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="6"/>
+                    <TextBox x:Name="TxtLessonTitle" HorizontalAlignment="Left" Height="23" Margin="10,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="6"/>
                     <TextBlock Text="Lesson Status (Publish/Draft)" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="403,306,0,0" VerticalAlignment="Top" Width="88" Height="31"/>
-                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="403,342,0,0" TabIndex="11" >
+                    <ComboBox x:Name="CmbxLessonStatus" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="403,342,0,0" TabIndex="11" >
                         <ComboBoxItem Content="Publish"/>
                         <ComboBoxItem Content="Draft"/>
                     </ComboBox>
                     <Label Content="Lesson Category" HorizontalAlignment="Left" Margin="235,188,0,0" VerticalAlignment="Top" Width="146"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="235,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" VerticalContentAlignment="Center" TabIndex="7"/>
+                    <TextBox x:Name="TxtLessonCategory" HorizontalAlignment="Left" Height="23" Margin="235,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" VerticalContentAlignment="Center" TabIndex="7"/>
                     <Label Content="Lesson Tag" HorizontalAlignment="Left" Margin="403,188,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="403,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="8"/>
+                    <TextBox x:Name="TxtLessonTag" HorizontalAlignment="Left" Height="23" Margin="403,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="8"/>
                     <Label Content="Lesson Content" HorizontalAlignment="Left" Margin="10,244,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="89" Margin="10,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="371" TabIndex="8"/>
+                    <TextBox x:Name="TxtLessonContent" HorizontalAlignment="Left" Height="89" Margin="10,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="371" TabIndex="8"/>
                     <Label Content="Lesson Featured Image" HorizontalAlignment="Left" Margin="403,244,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="403,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="10"/>
+                    <TextBox x:Name="TxtLessonFeaturedImage" HorizontalAlignment="Left" Height="23" Margin="403,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="10"/>
                     <TextBlock Text="Lesson Order" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="496,317,0,0" VerticalAlignment="Top" Width="70" Height="20"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="574,314,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" VerticalContentAlignment="Center" TabIndex="12" PreviewTextInput="TextBox_PreviewTextInput_1"/>
+                    <TextBox x:Name="TxtLessonOrder" HorizontalAlignment="Left" Height="23" Margin="574,314,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" VerticalContentAlignment="Center" TabIndex="12" PreviewTextInput="TextBox_PreviewTextInput_1"/>
                     <Label Content="Topic Title" HorizontalAlignment="Left" Margin="10,368,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,399,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="14"/>
+                    <TextBox x:Name="TxtTopicTitle" HorizontalAlignment="Left" Height="23" Margin="10,399,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="14"/>
                     <Label Content="Topic Category" HorizontalAlignment="Left" Margin="235,368,0,0" VerticalAlignment="Top" Width="146"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="235,399,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" VerticalContentAlignment="Center" TabIndex="15"/>
+                    <TextBox x:Name="TxtTopicCategory" HorizontalAlignment="Left" Height="23" Margin="235,399,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" VerticalContentAlignment="Center" TabIndex="15"/>
                     <Label Content="Topic Tag" HorizontalAlignment="Left" Margin="403,368,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="403,399,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="16"/>
+                    <TextBox x:Name="TxtTopicTag" HorizontalAlignment="Left" Height="23" Margin="403,399,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="16"/>
                     <Label Content="Topic Content" HorizontalAlignment="Left" Margin="10,424,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="89" Margin="10,455,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="371" TabIndex="17"/>
+                    <TextBox x:Name="TxtTopicContent" HorizontalAlignment="Left" Height="89" Margin="10,455,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="371" TabIndex="17"/>
                     <Label Content="Topic Featured Image" HorizontalAlignment="Left" Margin="403,424,0,0" VerticalAlignment="Top" Width="208"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="403,455,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="16"/>
+                    <TextBox x:Name="TxtTopicFeaturedImage" HorizontalAlignment="Left" Height="23" Margin="403,455,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" VerticalContentAlignment="Center" TabIndex="16"/>
                     <Button x:Name="BtnLessonVideoSetup" Content="Lesson Video Setup" HorizontalAlignment="Left" Margin="496,342,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.387,2.8" TabIndex="13" Click="BtnLessonVideoSetup_Click"/>
                     <TextBlock Text="Topic Status (Publish/Draft)" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="403,488,0,0" VerticalAlignment="Top" Width="88" Height="31"/>
-                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="403,524,0,0" TabIndex="17" >
+                    <ComboBox x:Name="CmbxTopicStatus" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="403,524,0,0" TabIndex="17" >
                         <ComboBoxItem Content="Publish"/>
                         <ComboBoxItem Content="Draft"/>
                     </ComboBox>
                     <TextBlock Text="Topic Order" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="496,499,0,0" VerticalAlignment="Top" Width="70" Height="20"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="574,496,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" VerticalContentAlignment="Center" TabIndex="18" PreviewTextInput="TextBox_PreviewTextInput_2"/>
+                    <TextBox x:Name="TxtTopicOrder" HorizontalAlignment="Left" Height="23" Margin="574,496,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" VerticalContentAlignment="Center" TabIndex="18" PreviewTextInput="TextBox_PreviewTextInput_2"/>
                     <Button x:Name="BtnTopicVideoSetup" Content="Topic Video Setup" HorizontalAlignment="Left" Margin="496,524,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.387,2.8" TabIndex="19" Click="BtnTopicVideoSetup_Click"/>
                     <Button x:Name="BtnSubmit_Copy" Content="Submit" HorizontalAlignment="Left" Margin="266,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnSubmit_Click" TabIndex="20"/>
                     <Button x:Name="BtnReset_Copy" Content="Reset" HorizontalAlignment="Left" Margin="12,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnReset_Click" TabIndex="21"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Export">
+            <TabItem Header="Export" MouseLeftButtonUp="TabItem_MouseLeftButtonUp">
                 <Grid x:Name="ExportGrid" Background="#FFE5E5E5" Loaded="ExportGrid_Loaded">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -134,8 +134,12 @@
                     <Label Content="Excel Path" HorizontalAlignment="Left" Margin="118,191,0,0" VerticalAlignment="Top" Width="65"/>
                     <TextBox x:Name="TxtExcelPath" HorizontalAlignment="Left" Height="23" Margin="188,191,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="282" VerticalContentAlignment="Center"/>
                     <Button x:Name="btnBrowse" Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="475,191,0,0" Height="23" Click="BtnBrowse_Click"/>
-                    <Button x:Name="BtnExportQuestion" Content="Export Question" HorizontalAlignment="Left" Margin="188,239,0,0" VerticalAlignment="Top" Width="108" Height="32" Click="BtnExportQuestion_Click"/>
-                    <Button x:Name="BtnExportCourse" Content="Export Course" HorizontalAlignment="Left" Margin="362,239,0,0" VerticalAlignment="Top" Width="108" Height="32"/>
+                    <Button x:Name="BtnExportQuestion" Content="Export Question" HorizontalAlignment="Left" Margin="442,233,0,0" VerticalAlignment="Top" Width="108" Height="32" Click="BtnExportQuestion_Click"/>
+                    <Button x:Name="BtnExportCourse" Content="Export Course" HorizontalAlignment="Left" Margin="442,282,0,0" VerticalAlignment="Top" Width="108" Height="32" Click="BtnExportCourse_Click"/>
+                    <ComboBox x:Name="cmbxQuizTitle" DisplayMemberPath="Quiz_Title" SelectedValuePath="Id" HorizontalAlignment="Left" Margin="188,233,0,0" VerticalAlignment="Top" Width="177" Height="32" VerticalContentAlignment="Center" DropDownClosed="CmbxQuizTitle_DropDownClosed"/>
+                    <ComboBox x:Name="cmbxCourseTitle"  DisplayMemberPath="Course_Title" SelectedValuePath="Id" HorizontalAlignment="Left" Margin="188,282,0,0" VerticalAlignment="Top" Width="177" Height="32" VerticalContentAlignment="Center" DropDownClosed="CmbxCourseTitle_DropDownClosed" GotFocus="CmbxCourseTitle_GotFocus"/>
+                    <Label Content="Quiz Title" HorizontalAlignment="Left" Margin="118,236,0,0" VerticalAlignment="Top" Width="65"/>
+                    <Label Content="Course Title" HorizontalAlignment="Left" Margin="115,285,0,0" VerticalAlignment="Top" Width="73"/>
                 </Grid>
             </TabItem>
         </TabControl>

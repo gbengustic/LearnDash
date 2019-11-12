@@ -17,33 +17,33 @@
         <TextBlock TextWrapping="Wrap" Text="Show Video Control (Y/N)" HorizontalAlignment="Left" Margin="0,154,0,0" VerticalAlignment="Top" Width="82"/>
         <TextBlock TextWrapping="Wrap" Text="When to Show (After /Before)" HorizontalAlignment="Left" Margin="126,154,0,0" VerticalAlignment="Top" Width="82"/>
         <TextBlock x:Name="TxbAutoComp" TextWrapping="Wrap" Text="Auto Complete Lesson (Y/N)" HorizontalAlignment="Left" Margin="0,239,0,0" VerticalAlignment="Top" Width="99"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="126,191,0,0">
+        <ComboBox x:Name="CmbxWhenToShow" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="126,191,0,0">
             <ComboBoxItem Content="After"/>
             <ComboBoxItem Content="Before"/>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="0,191,0,0">
+        <ComboBox x:Name="CmbxShowVideoControl" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="0,191,0,0">
             <ComboBoxItem Content="Y"/>
             <ComboBoxItem Content="N"/>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="0,276,0,0">
+        <ComboBox x:Name="CmbxAutoComplete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="0,276,0,0">
             <ComboBoxItem Content="Y"/>
             <ComboBoxItem Content="N"/>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="126,112,0,0">
+        <ComboBox x:Name="CmbxAutoStartVideo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="126,112,0,0">
             <ComboBoxItem Content="Y"/>
             <ComboBoxItem Content="N"/>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="0,112,0,0">
+        <ComboBox x:Name="CmbxEnableVideoProgression" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="0,112,0,0">
             <ComboBoxItem Content="Y"/>
             <ComboBoxItem Content="N"/>
         </ComboBox>
         <TextBlock TextWrapping="Wrap" Text="Hide Complete Button (Y/N)" HorizontalAlignment="Left" Margin="126,239,0,0" VerticalAlignment="Top" Width="82"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="126,276,0,0">
+        <ComboBox x:Name="CmbxHideCompleteButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="126,276,0,0">
             <ComboBoxItem Content="Y"/>
             <ComboBoxItem Content="N"/>
         </ComboBox>
         <TextBlock TextWrapping="Wrap" Text="Allow Comment (Y/N)" HorizontalAlignment="Left" Margin="243,239,0,0" VerticalAlignment="Top" Width="96"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="243,276,0,0">
+        <ComboBox x:Name="CmbxAllowComment" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="243,276,0,0">
             <ComboBoxItem Content="Y"/>
             <ComboBoxItem Content="N"/>
         </ComboBox>
