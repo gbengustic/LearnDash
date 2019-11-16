@@ -62,6 +62,7 @@
                     <TextBox x:Name="txtAnswer"  AcceptsReturn="True" HorizontalAlignment="Left" Height="90" Margin="337,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" TabIndex="9" />
                     <TextBlock HorizontalAlignment="Left" Margin="325,76,0,0" TextWrapping="Wrap" Text="Different points for each answer" VerticalAlignment="Top" Height="34" Width="84"/>
                     <Button x:Name="btnAddAnswer" Content="Add" HorizontalAlignment="Left" Margin="224,280,0,0" VerticalAlignment="Top" Width="56" Click="BtnAddAnswer_Click"/>
+                    <Button x:Name="BtnViewQuestions" Content="View Questions" HorizontalAlignment="Left" Margin="488,550,0,0" VerticalAlignment="Top" Width="115" Height="32"  TabIndex="23" Click="BtnViewQuestions_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Add Course">
@@ -124,6 +125,7 @@
                     <Button x:Name="BtnTopicVideoSetup" Content="Topic Video Setup" HorizontalAlignment="Left" Margin="496,524,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.387,2.8" TabIndex="19" Click="BtnTopicVideoSetup_Click"/>
                     <Button x:Name="BtnSubmit_Copy" Content="Submit" HorizontalAlignment="Left" Margin="266,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnSubmit_Click" TabIndex="20"/>
                     <Button x:Name="BtnReset_Copy" Content="Reset" HorizontalAlignment="Left" Margin="12,550,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="BtnReset_Click" TabIndex="21"/>
+                    <Button x:Name="BtnViewCourse" Content="View Courses" HorizontalAlignment="Left" Margin="496,551,0,0" VerticalAlignment="Top" Width="115" Height="32"  TabIndex="22" Click="BtnViewCourse_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Export" MouseLeftButtonUp="TabItem_MouseLeftButtonUp">
@@ -142,6 +144,8 @@
                     <Label Content="Course Title" HorizontalAlignment="Left" Margin="115,285,0,0" VerticalAlignment="Top" Width="73"/>
                 </Grid>
             </TabItem>
+            
+
         </TabControl>
 
     </Grid>

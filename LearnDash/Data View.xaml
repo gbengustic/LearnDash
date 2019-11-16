@@ -1,0 +1,55 @@
+﻿<Window x:Class="LearnDash.Data_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LearnDash"
+        mc:Ignorable="d"
+        Title="Data View" MinHeight="550" Height="550" Width="800" Icon="main_logo_js_5Dy_icon.ico" WindowStartupLocation="CenterOwner" WindowState="Maximized" SizeToContent="Width">
+    <Grid>
+        <TabControl x:Name="DataViewControl">
+            <TabItem Header="View Question" TabIndex="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="16*"/>
+                        <RowDefinition Height="17*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="QuestionView" ItemsSource="{Binding}" Margin="0,39,0,0" Grid.RowSpan="2" TabIndex="6"  />
+                    <Label Content="Category:" Grid.Row="0" Margin="0,7,560,191"/>
+                    <TextBox x:Name="TxtQuestionViewCategory" HorizontalAlignment="Left" Height="23" Margin="67,11,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" VerticalContentAlignment="Center" TabIndex="1"/>
+                    <Label Content="Entry Date:" Grid.Row="0" Margin="211,7,353,191"/>
+                    <DatePicker x:Name="QuestionDpk1" HorizontalAlignment="Left" Margin="290,10,0,0" VerticalAlignment="Top" Width="104" Height="24" TabIndex="2" Text="Start Date"/>
+                    <Label Content="to" Grid.Row="0" Margin="395,7,210,191"/>
+                    <DatePicker x:Name="QuestionDpk2" HorizontalAlignment="Left" Margin="428,10,0,0" VerticalAlignment="Top" Width="104" Height="24" TabIndex="3"/>
+                    <Button x:Name="BtnFilterQuestion" Content="Filter" HorizontalAlignment="Left" Margin="537,12,0,0" VerticalAlignment="Top" Width="42" Height="20" TabIndex="4" Click="BtnFilterQuestion_Click"/>
+                    <Button x:Name="BtnClearQuestionFilter" Content="Clear" HorizontalAlignment="Left" Margin="584,12,0,0" VerticalAlignment="Top" Width="42" Height="20" TabIndex="5" Click="BtnClearQuestionFilter_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="View Courses" TabIndex="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="16*"/>
+                        <RowDefinition Height="17*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="CourseView" ItemsSource="{Binding}" Margin="0,39,0,0" Grid.RowSpan="2" TabIndex="7"  />
+                    <Label Content="Category:" Grid.Row="0" Margin="206,7,0,191" HorizontalAlignment="Left" Width="62"/>
+                    <TextBox x:Name="TxtCourseViewCategory" Grid.Row="0" HorizontalAlignment="Left" Height="23" Margin="273,11,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" VerticalContentAlignment="Center" TabIndex="2"/>
+                    <Label Content="Entry Date:" Grid.Row="0" Margin="417,7,0,191" HorizontalAlignment="Left" Width="65"/>
+                    <DatePicker x:Name="Dpk1Course" HorizontalAlignment="Left" Grid.Row="0" Margin="496,10,0,0" VerticalAlignment="Top" Width="104" Height="24" TabIndex="3"/>
+                    <Label Content="to" Grid.Row="0" Margin="601,7,0,191" HorizontalAlignment="Left" Width="28"/>
+                    <DatePicker x:Name="Dpk2Course" Grid.Row="0" HorizontalAlignment="Left" Margin="634,10,0,0" VerticalAlignment="Top" Width="104" Height="24" TabIndex="4"/>
+                    <Button x:Name="BtnFilterCourses" Content="Filter" Grid.Row="0" HorizontalAlignment="Left" Margin="743,12,0,0" VerticalAlignment="Top" Width="42" Height="20" TabIndex="5" Click="BtnFilterCourses_Click"/>
+                    <Button x:Name="BtnClearCourseFilter" Content="Clear" Grid.Row="0" HorizontalAlignment="Left" Margin="790,12,-46,0" VerticalAlignment="Top" Width="42" Height="20" TabIndex="6" Click="BtnClearCourseFilter_Click"/>
+                    <Label Content="Topic:" Grid.Row="0" Margin="2,6,0,192" HorizontalAlignment="Left" Width="62"/>
+                    <TextBox x:Name="TxtCourseViewTopic" Grid.Row="0" HorizontalAlignment="Left" Height="23" Margin="69,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" VerticalContentAlignment="Center" TabIndex="1"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

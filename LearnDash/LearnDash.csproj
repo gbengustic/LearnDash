@@ -113,6 +113,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data View.xaml.cs">
+      <DependentUpon>Data View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LearnDashData.cs">
       <DependentUpon>LearnDashData.xsd</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
     <Compile Include="VideoSetup.xaml.cs">
       <DependentUpon>VideoSetup.xaml</DependentUpon>
     </Compile>
+    <Page Include="Data View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -188,10 +195,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LearnDash.mdf">
+    <Content Include="Database\LearnDash.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="LearnDash_log.ldf">
+    <Content Include="Database\LearnDash_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>LearnDash.mdf</DependentUpon>
     </Content>

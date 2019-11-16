@@ -2,24 +2,16 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.IO;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Data;
 using System.ComponentModel;
 using System.Windows.Threading;
 using System.Threading;
 using System.Globalization;
+using System.IO;
 
 namespace LearnDash
 {
@@ -32,8 +24,12 @@ namespace LearnDash
         string[] Answers = new string[8];
         int[] AnswerPoint = new int[8];
         DataTable QuestionDt;
+        DataSet ViewsDataset;
         private readonly BackgroundWorker worker = new BackgroundWorker();
         PleaseWait pleaseWait;
+        string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
+            + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LearnDash Database", "LearnDash.mdf") 
+            + ";Integrated Security=True";
         public MainWindow()
         {
             InitializeComponent();
@@ -45,6 +41,11 @@ namespace LearnDash
             }
             cmbxAnswerNumber.SelectedIndex = 0;
 
+            ViewsDataset = new DataSet();
+            ViewsDataset.Tables.Add("Question");
+            QueryTable("Question");
+            ViewsDataset.Tables.Add("Course");
+            QueryTable("Course");
             worker.DoWork += worker_DoWork;
         }
 
@@ -62,7 +63,14 @@ namespace LearnDash
         {
             return !_regex.IsMatch(text);
         }
-
+        private void QueryTable(string table)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            var command = new SqlCommand("Select * FROM " + table, connection);
+            var adapter = new SqlDataAdapter(command);
+            adapter.Fill(ViewsDataset.Tables[table]);
+       
+        }
         private void TxtTotalPoints_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
@@ -124,9 +132,37 @@ namespace LearnDash
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if (Validate(this.CourseTab) && CourseVideoSetup.LessonComplete && CourseVideoSetup.TopicComplete)
+            if (Validate(this.CourseTab))
             {
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                if (!CourseVideoSetup.LessonComplete)
+                {
+                    CourseVideoSetup.Lesson_Enable_Video_Progression = "";
+                    CourseVideoSetup.Lesson_Video_URL = "";
+                    CourseVideoSetup.Lesson_Auto_Start_Video = "";
+                    CourseVideoSetup.Lesson_Show_Video_Control = "";
+                    CourseVideoSetup.Lesson_When_to_Show = "";
+                    CourseVideoSetup.Lesson_Auto_Complete = "";
+                    CourseVideoSetup.Lesson_Hide_Complete_Button = "";
+                    CourseVideoSetup.Lesson_Allow_Comment = "";
+                    //MessageBox.Show("Please complete Lesson Video Setup", "LearnDash");
+                    //BtnLessonVideoSetup.Focus();
+                    //BtnLessonVideoSetup_Click(this, null);
+                }
+                if (!CourseVideoSetup.TopicComplete)
+                {
+                    CourseVideoSetup.Topic_Enable_Video_Progression = "";
+                    CourseVideoSetup.Topic_Video_URL = "";
+                    CourseVideoSetup.Topic_Auto_Start_Video = "";
+                    CourseVideoSetup.Topic_Show_Video_Control = "";
+                    CourseVideoSetup.Topic_When_to_Show = "";
+                    CourseVideoSetup.Topic_Auto_Complete = "";
+                    CourseVideoSetup.Topic_Hide_Complete_Button = "";
+                    CourseVideoSetup.Topic_Allow_Comment = "";
+                    //MessageBox.Show("Please complete Topic Video Setup", "LearnDash");
+                    //BtnTopicVideoSetup.Focus();
+                    //BtnTopicVideoSetup_Click(this, null);
+                }
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     String query = "INSERT INTO dbo.Course ([DateEntered],[Course_Title],[Course_Category],[Course_Tag],[Course_Content]," +
                         "[Course_Featured_Image],[Course_Status],[Lesson_Title],[Lesson_Category],[Lesson_Tag],[Lesson_Content],[Lesson_Enable_Video_Progression]," +
@@ -198,19 +234,11 @@ namespace LearnDash
                         connection.Close();
                     }
                 }
+
+               
+               
             }
-            else if (!CourseVideoSetup.LessonComplete)
-            {
-                MessageBox.Show("Please complete Lesson Video Setup", "LearnDash");
-                BtnLessonVideoSetup.Focus();
-                BtnLessonVideoSetup_Click(this, null);
-            }
-            else if (!CourseVideoSetup.TopicComplete)
-            {
-                MessageBox.Show("Please complete Topic Video Setup", "LearnDash");
-                BtnTopicVideoSetup.Focus();
-                BtnTopicVideoSetup_Click(this, null);
-            }
+           
             else
             {
                 MessageBox.Show("All fields are mandatory", "LearnDash");
@@ -318,7 +346,7 @@ namespace LearnDash
                 int LastID = 0;
 
 
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     String query = "INSERT INTO dbo.Question ([DateEntered],[Quiz_Title],[Question_Type],[Category],[Title],[Total_Point],[Different_Points]" +
                         ",[Question_Text],[Answer_Type],[Answer],[Total_Answer],[Message_with_correct_answer],[Message_with_incorrect_answer],[Hint]) OUTPUT INSERTED.ID " +
@@ -358,7 +386,7 @@ namespace LearnDash
                     }
                 }
 
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     String query = "INSERT INTO dbo.Answer ([Question_ID],[Answer],[Point],[Answer_Number]) VALUES (@Question_ID,@Answer,@Point,@Answer_Number)";
                     var i = 0;
@@ -466,7 +494,7 @@ namespace LearnDash
             var FinalQuestionTable = new DataTable();
 
             QuestionDt = new DataTable();
-            SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString);
             var command = new SqlCommand("Select * FROM dbo.Question Where Quiz_Title='" + QuizCriteria + "'", connection);
             var adapter = new SqlDataAdapter(command);
             adapter.Fill(QuestionDt);
@@ -501,7 +529,7 @@ namespace LearnDash
                 dr["Message_with_incorrect_answer"] = dataRow["Message_with_incorrect_answer"];
                 dr["Hint"] = dataRow["Hint"];
                 var AnswerDt = new DataTable();
-                connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
+                connection = new SqlConnection(ConnectionString);
                 command = new SqlCommand("Select * FROM dbo.Answer Where Question_ID='" + dataRow["Id"].ToString() + "'", connection);
                 adapter = new SqlDataAdapter(command);
                 adapter.Fill(AnswerDt);
@@ -540,7 +568,7 @@ namespace LearnDash
         void ExportCourse()
         {
             var FinalCourseTable = new DataTable();
-            SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString);
             var command = new SqlCommand("Select * FROM dbo.Course Where Course_Title='"+ CourseCriteria+"'", connection);
             var adapter = new SqlDataAdapter(command);
             adapter.Fill(FinalCourseTable);
@@ -640,21 +668,52 @@ namespace LearnDash
         }
         void FillCriteria()
         {
-            var CourseTitleTable = new DataTable();
-            var QuestionTitleTable = new DataTable();
-            SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
-            var command = new SqlCommand("Select DISTINCT  [Course_Title] FROM dbo.Course", connection);
-            var adapter = new SqlDataAdapter(command);
-            adapter.Fill(CourseTitleTable);
-            command = new SqlCommand("Select DISTINCT  [Quiz_Title] FROM dbo.Question", connection);
-            adapter = new SqlDataAdapter(command);
-            adapter.Fill(QuestionTitleTable);
-            cmbxQuizTitle.ItemsSource = QuestionTitleTable.DefaultView;
-            cmbxCourseTitle.ItemsSource = CourseTitleTable.DefaultView;
+            try
+            {
+                var CourseTitleTable = new DataTable();
+                var QuestionTitleTable = new DataTable();
+                SqlConnection connection = new SqlConnection(ConnectionString);
+                var command = new SqlCommand("Select DISTINCT  [Course_Title] FROM dbo.Course", connection);
+                var adapter = new SqlDataAdapter(command);
+                adapter.Fill(CourseTitleTable);
+                command = new SqlCommand("Select DISTINCT  [Quiz_Title] FROM dbo.Question", connection);
+                adapter = new SqlDataAdapter(command);
+                adapter.Fill(QuestionTitleTable);
+                cmbxQuizTitle.ItemsSource = QuestionTitleTable.DefaultView;
+                cmbxCourseTitle.ItemsSource = CourseTitleTable.DefaultView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "LearnDash");
+                File.WriteAllText("error.txt",ex.Message);
+            }
+
         }
         private void CmbxCourseTitle_GotFocus(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void LearnDashTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void QuestionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void BtnViewCourse_Click(object sender, RoutedEventArgs e)
+        {
+            QueryTable("Course");
+            var dataView = new Data_View(ViewsDataset, "Course").ShowDialog();
+        }
+
+        private void BtnViewQuestions_Click(object sender, RoutedEventArgs e)
+        {
+            QueryTable("Question");
+            var dataView = new Data_View(ViewsDataset, "Question").ShowDialog();
         }
     }
 }
