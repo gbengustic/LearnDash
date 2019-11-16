@@ -707,13 +707,17 @@ namespace LearnDash
         private void BtnViewCourse_Click(object sender, RoutedEventArgs e)
         {
             QueryTable("Course");
+            this.Hide();
             var dataView = new Data_View(ViewsDataset, "Course").ShowDialog();
+            this.Show();
         }
 
         private void BtnViewQuestions_Click(object sender, RoutedEventArgs e)
         {
             QueryTable("Question");
+            this.Hide();
             var dataView = new Data_View(ViewsDataset, "Question").ShowDialog();
+            this.Show();
         }
     }
 }

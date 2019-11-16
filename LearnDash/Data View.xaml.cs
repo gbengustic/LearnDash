@@ -26,7 +26,11 @@ namespace LearnDash
             InitializeComponent();
             tempDataSet = new DataSet();
             tempDataSet = dataSet.Copy();
+            dataSet.Tables["Question"].Columns.Remove("DateEntered");
+            dataSet.Tables["Question"].Columns.Remove("Id");
             QuestionView.DataContext = dataSet.Tables["Question"].DefaultView;
+            dataSet.Tables["Course"].Columns.Remove("DateEntered");
+            dataSet.Tables["Course"].Columns.Remove("Id");
             CourseView.DataContext = dataSet.Tables["Course"].DefaultView;
             if(Caller== "Question")
             {
