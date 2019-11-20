@@ -1,7 +1,10 @@
-﻿namespace LearnDash
+﻿using System.Data;
+
+namespace LearnDash
 {
     class CourseVideoSetup
     {
+        private static DataTable courseTable;
         private static string lesson_Enable_Video_Progression;
         private static string lesson_Video_URL;
         private static string lesson_Auto_Start_Video;
@@ -40,5 +43,6 @@
         public static string Topic_Allow_Comment { get => topic_Allow_Comment; set => topic_Allow_Comment = value; }
         public static bool LessonComplete { get => lessonComplete; set => lessonComplete = value; }
         public static bool TopicComplete { get => topicComplete; set => topicComplete = value; }
+        public static DataTable CourseTable { get => courseTable; set => courseTable = value; }
     }
 }

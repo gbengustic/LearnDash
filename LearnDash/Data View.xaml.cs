@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -21,18 +22,22 @@ namespace LearnDash
     public partial class Data_View : Window
     {
         DataSet tempDataSet;
+        DataTable tempQuestionTable;
+        DataTable tempCourseTable;
         public Data_View(DataSet dataSet, string Caller)
         {
             InitializeComponent();
             tempDataSet = new DataSet();
             tempDataSet = dataSet.Copy();
-            dataSet.Tables["Question"].Columns.Remove("DateEntered");
-            dataSet.Tables["Question"].Columns.Remove("Id");
-            QuestionView.DataContext = dataSet.Tables["Question"].DefaultView;
-            dataSet.Tables["Course"].Columns.Remove("DateEntered");
-            dataSet.Tables["Course"].Columns.Remove("Id");
-            CourseView.DataContext = dataSet.Tables["Course"].DefaultView;
-            if(Caller== "Question")
+            tempQuestionTable = dataSet.Tables["Question"].Copy();
+            tempCourseTable = CourseVideoSetup.CourseTable.Copy();
+            tempQuestionTable.Columns.Remove("DateEntered");
+            tempQuestionTable.Columns.Remove("Id");
+            QuestionView.DataContext = tempQuestionTable.DefaultView;
+            tempCourseTable.Columns.Remove("DateEntered");
+            //tempCourseTable.Columns.Remove("Id");
+            CourseView.DataContext = tempCourseTable.DefaultView;
+            if (Caller== "Question")
             {
                 DataViewControl.SelectedIndex = 0;
             }
@@ -40,35 +45,56 @@ namespace LearnDash
             {
                 DataViewControl.SelectedIndex = 1;
             }
+            
+            var TopicTitle = (from Rows in tempCourseTable.AsEnumerable() select Rows["Topic_Title"]).Distinct().ToList().OfType<string>().ToArray();
+            AutoCompleteStringCollection allowedTypes = new AutoCompleteStringCollection();
+            allowedTypes.AddRange(TopicTitle);
+            TxtCourseViewTopic.AutoCompleteCustomSource = allowedTypes;
+            TxtCourseViewTopic.AutoCompleteMode = AutoCompleteMode.Suggest;
+            TxtCourseViewTopic.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            var CourseCategory = (from Rows in tempCourseTable.AsEnumerable() select Rows["Course_Category"]).Distinct().ToList().OfType<string>().ToArray();
+            allowedTypes = new AutoCompleteStringCollection();
+            allowedTypes.AddRange(CourseCategory);
+            TxtCourseViewCategory.AutoCompleteCustomSource = allowedTypes;
+            TxtCourseViewCategory.AutoCompleteMode = AutoCompleteMode.Suggest;
+            TxtCourseViewCategory.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            var QuestionCategory = (from Rows in tempQuestionTable.AsEnumerable() select Rows["Category"]).Distinct().ToList().OfType<string>().ToArray();
+            allowedTypes = new AutoCompleteStringCollection();
+            allowedTypes.AddRange(QuestionCategory);
+            TxtQuestionViewCategory.AutoCompleteCustomSource = allowedTypes;
+            TxtQuestionViewCategory.AutoCompleteMode = AutoCompleteMode.Suggest;
+            TxtQuestionViewCategory.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
         }
         private void FilterCourseTable(DataTable table, DateTime startDate, DateTime endDate,string category,string topic)
         {
             if (startDate > endDate)
             {
-                MessageBox.Show("Invalid Date Range", "LearnDash");
+                System.Windows.MessageBox.Show("Invalid Date Range", "LearnDash");
                 return;
             }
             var filteredRows =
                 from row in table.Rows.OfType<DataRow>()
-                where (DateTime)row[1] >= startDate
-                where (DateTime)row[1] <= endDate
-                where (string)row[23] == topic
-                where (string)row[3] == category
+                where (DateTime)row[0] >= startDate
+                where (DateTime)row[0] <= endDate
+                where (string)row[22] == topic
+                where (string)row[2] == category
                 select row;
 
             var filteredTable = table.Clone();
 
             filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
             filteredTable.Columns.Remove("DateEntered");
-            filteredTable.Columns.Remove("Id");
+            //filteredTable.Columns.Remove("Id");
             CourseView.DataContext = filteredTable.DefaultView;
         }
         private void FilterQuestionTable(DataTable table, DateTime startDate, DateTime endDate, string category)
         {
             if(startDate> endDate)
             {
-                MessageBox.Show("Invalid Date Range", "LearnDash");
+                System.Windows.MessageBox.Show("Invalid Date Range", "LearnDash");
                 return;
             }
             var filteredRows =
@@ -105,7 +131,7 @@ namespace LearnDash
         {
             var tempTable = tempDataSet.Tables["Course"].Copy();
             tempTable.Columns.Remove("DateEntered");
-            tempTable.Columns.Remove("Id");
+            //tempTable.Columns.Remove("Id");
             CourseView.DataContext = tempTable.DefaultView;
         }
 
@@ -116,5 +142,61 @@ namespace LearnDash
             tempTable.Columns.Remove("Id");
             QuestionView.DataContext = tempTable.DefaultView;
         }
+
+      
+
+        private void TxtCourseViewTopic_Click(object sender, EventArgs e)
+        {
+            TxtCourseViewTopic.SelectionStart = 0;
+            TxtCourseViewTopic.SelectionLength = TxtCourseViewTopic.Text.Length;
+        }
+
+        private void TxtCourseViewCategory_Click(object sender, EventArgs e)
+        {
+            TxtCourseViewCategory.SelectionStart = 0;
+            TxtCourseViewCategory.SelectionLength = TxtCourseViewCategory.Text.Length;
+        }
+
+        private void TxtQuestionViewCategory_Click(object sender, EventArgs e)
+        {
+            TxtQuestionViewCategory.SelectionStart = 0;
+            TxtQuestionViewCategory.SelectionLength = TxtQuestionViewCategory.Text.Length;
+        }
+
+
+
+
+        //private void addItem(string text, TextBox textBox)
+        //{
+        //    TextBlock block = new TextBlock();
+
+        //    // Add the text   
+        //    block.Text = text;
+
+        //    // A little style...   
+        //    block.Margin = new Thickness(2, 3, 2, 3);
+        //    block.Cursor = Cursors.Hand;
+
+        //    // Mouse events   
+        //    block.MouseLeftButtonUp += (sender, e) =>
+        //    {
+        //        textBox.Text = (sender as TextBlock).Text;
+        //    };
+
+        //    block.MouseEnter += (sender, e) =>
+        //    {
+        //        TextBlock b = sender as TextBlock;
+        //        b.Background = Brushes.PeachPuff;
+        //    };
+
+        //    block.MouseLeave += (sender, e) =>
+        //    {
+        //        TextBlock b = sender as TextBlock;
+        //        b.Background = Brushes.Transparent;
+        //    };
+
+        //    // Add to the panel   
+        //    resultStack.Children.Add(block);
+        //}
     }
 }

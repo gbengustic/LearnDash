@@ -92,6 +92,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="Xceed.Wpf.AvalonDock, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
@@ -115,14 +116,6 @@
     </ApplicationDefinition>
     <Compile Include="Data View.xaml.cs">
       <DependentUpon>Data View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LearnDashData.cs">
-      <DependentUpon>LearnDashData.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="LearnDashData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LearnDashData.xsd</DependentUpon>
     </Compile>
     <Compile Include="PleaseWait.xaml.cs">
       <DependentUpon>PleaseWait.xaml</DependentUpon>
@@ -174,17 +167,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="LearnDashData.xsc">
-      <DependentUpon>LearnDashData.xsd</DependentUpon>
-    </None>
-    <None Include="LearnDashData.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LearnDashData.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="LearnDashData.xss">
-      <DependentUpon>LearnDashData.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
