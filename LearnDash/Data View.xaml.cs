@@ -75,7 +75,9 @@ namespace LearnDash
                 System.Windows.MessageBox.Show("Invalid Date Range", "LearnDash");
                 return;
             }
-            var filteredRows =
+            try
+            {
+var filteredRows =
                 from row in table.Rows.OfType<DataRow>()
                 where (DateTime)row[0] >= startDate
                 where (DateTime)row[0] <= endDate
@@ -89,6 +91,13 @@ namespace LearnDash
             filteredTable.Columns.Remove("DateEntered");
             //filteredTable.Columns.Remove("Id");
             CourseView.DataContext = filteredTable.DefaultView;
+            }
+            catch (Exception ex)
+            {
+
+                System.Windows.MessageBox.Show(ex.Message, "LearnDash");
+            }
+            
         }
         private void FilterQuestionTable(DataTable table, DateTime startDate, DateTime endDate, string category)
         {
@@ -115,7 +124,7 @@ namespace LearnDash
         {
             if (!string.IsNullOrWhiteSpace(TxtCourseViewCategory.Text) && !string.IsNullOrWhiteSpace(TxtCourseViewTopic.Text) && Dpk1Course.SelectedDate!=null && Dpk2Course.SelectedDate!=null)
             {
-                FilterCourseTable(tempDataSet.Tables["Course"], (DateTime)Dpk1Course.SelectedDate, (DateTime)Dpk2Course.SelectedDate, TxtCourseViewCategory.Text, TxtCourseViewTopic.Text);
+                FilterCourseTable(CourseVideoSetup.CourseTable, (DateTime)Dpk1Course.SelectedDate, (DateTime)Dpk2Course.SelectedDate, TxtCourseViewCategory.Text, TxtCourseViewTopic.Text);
             }
         }
 
@@ -129,7 +138,7 @@ namespace LearnDash
 
         private void BtnClearCourseFilter_Click(object sender, RoutedEventArgs e)
         {
-            var tempTable = tempDataSet.Tables["Course"].Copy();
+            var tempTable = CourseVideoSetup.CourseTable.Copy();
             tempTable.Columns.Remove("DateEntered");
             //tempTable.Columns.Remove("Id");
             CourseView.DataContext = tempTable.DefaultView;

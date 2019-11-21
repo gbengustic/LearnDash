@@ -50,7 +50,7 @@ namespace LearnDash
             ViewsDataset.Tables.Add("Lesson");
             ViewsDataset.Tables.Add("Topic");
             ViewsDataset.Tables.Add("Export");
-            ViewsDataset.Tables["Export"].Columns.Add("DateEntered");
+            ViewsDataset.Tables["Export"].Columns.Add("DateEntered", typeof(DateTime));
             ViewsDataset.Tables["Export"].Columns.Add("Course_Title");
             ViewsDataset.Tables["Export"].Columns.Add("Course_Category");
             ViewsDataset.Tables["Export"].Columns.Add("Course_Tag");
@@ -1023,7 +1023,7 @@ namespace LearnDash
             }
             else
             {
-                MessageBox.Show("All Topic and Course fields are required", "LearnDash");
+                if (e != null) MessageBox.Show("All Topic and Course fields are required", "LearnDash");
             }
         }
 
